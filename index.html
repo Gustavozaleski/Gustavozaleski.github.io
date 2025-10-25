@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio Gustavo Zaleski</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <header>
+    <button id="lang-toggle">EN 🇺🇸</button>
+    <h2 data-lang-pt="SEJA BEM-VINDO AO MEU PORTFÓLIO" data-lang-en="WELCOME TO MY PORTFOLIO">
+      SEJA BEM-VINDO AO MEU PORTFÓLIO
+    </h2>
+  </header>
+
+  <section class="intro fade-in">
+    <img src="minhafoto.jpg" width="150" class="foto" alt="Foto de Gustavo">
+    <p id="texto">
+      Olá! Meu nome é <b>Gustavo Zaleski</b>, tenho 20 anos e sou estudante de Engenharia de Software. Sou apaixonado pela área de dados e, mais especificamente, por Ciência de Dados. Tenho como objetivo me especializar cada vez mais nesse campo, desenvolvendo habilidades que me permitam trabalhar com análise, manipulação e visualização de dados para apoiar a tomada de decisões estratégicas.
+      <br><br>
+      Atualmente, estou me aprofundando no estudo de bancos de dados relacionais, com foco em SQL Server, MySQL e Oracle. Tenho dedicado meus esforços a entender conceitos de modelagem, consultas e manipulação de dados.
+      <br><br>
+      Meu próximo passo será me aprofundar em Python, com foco no uso de bibliotecas voltadas para ciência de dados, como Pandas, NumPy e Matplotlib.
+      <br><br>
+      Acredito que aprendizado é um processo contínuo e, por isso, estou sempre buscando novos desafios e oportunidades de crescimento na área.
+      <br><br>
+      🔗 <b>Certificados e Redes Sociais:</b> Abaixo estão links para alguns dos meus certificados e perfis profissionais:
+    </p>
+  </section>
+
+  <section class="icones fade-in">
+    <a href="https://github.com/Gustavozaleski" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/gustavo-ramos-zaleski-806b07255/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://drive.google.com/drive/folders/1f_BTOZ3e9oiqVtWChaRY4UzMYXuVBw3d?usp=sharing" target="_blank" title="Certificados"><i class="fas fa-award"></i></a>
+  </section>
+
+  <section class="tech fade-in">
+    <h3 data-lang-pt="Tecnologias que utilizo" data-lang-en="Technologies I Use">Tecnologias que utilizo</h3>
+    <div class="tech-icons">
+      <i class="fab fa-python" title="Python"></i>
+      <i class="fas fa-chart-bar" title="Power BI"></i>
+      <i class="fas fa-file-excel" title="Excel"></i>
+      <i class="fas fa-database" title="SQL Server"></i>
+      <i class="fas fa-server" title="MySQL"></i>
+      <i class="fas fa-cloud" title="Azure Machine Learning"></i>
+    </div>
+  </section>
+
+  <script>
+    // === Alternar idioma ===
+    const langBtn = document.getElementById("lang-toggle");
+    const texts = document.querySelectorAll("[data-lang-pt]");
+    const textBlock = document.getElementById("texto");
+    let currentLang = "pt";
+
+    const ptText = textBlock.innerHTML;
+    const enText = `
+      Hello! My name is <b>Gustavo Zaleski</b>, I'm 20 years old and a Software Engineering student. 
+      I'm passionate about the data field, especially Data Science. My goal is to specialize more and more in this area, 
+      developing skills that allow me to work with data analysis, manipulation and visualization to support strategic decision-making.
+      <br><br>
+      Currently, I'm deepening my knowledge of relational databases, focusing on SQL Server, MySQL, and Oracle. 
+      I'm dedicating myself to understanding concepts of modeling, queries, and data manipulation.
+      <br><br>
+      My next step is to study Python more deeply, focusing on libraries such as Pandas, NumPy, and Matplotlib.
+      <br><br>
+      I believe learning is a continuous process, and I'm always looking for new challenges and opportunities for growth in the field.
+      <br><br>
+      🔗 <b>Certificates and Social Media:</b> Below are links to some of my certificates and professional profiles:
+    `;
+
+    langBtn.addEventListener("click", () => {
+      currentLang = currentLang === "pt" ? "en" : "pt";
+      langBtn.textContent = currentLang === "pt" ? "EN 🇺🇸" : "PT 🇧🇷";
+      textBlock.innerHTML = currentLang === "pt" ? ptText : enText;
+
+      texts.forEach(el => {
+        el.textContent = currentLang === "pt" ? el.dataset.langPt : el.dataset.langEn;
+      });
+    });
+
+    // === Animação ao rolar ===
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = { threshold: 0.2 };
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('appear');
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+  </script>
+
+</body>
+</html>
